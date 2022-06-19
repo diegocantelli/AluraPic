@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Photo } from './photos/photo/photo';
 import { PhotoService } from './photos/photo/photo.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { PhotoService } from './photos/photo/photo.service';
 
 export class AppComponent {
 
-  photos: Object[] = [];
+  photos: Photo[] = [];
 
   constructor(photoService: PhotoService){
     photoService.listFromUser('flavio')
