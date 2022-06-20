@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app.routing.module';
 import { PhotosModule } from './photos/photos.module';
 
 @NgModule({
@@ -13,7 +14,8 @@ import { PhotosModule } from './photos/photos.module';
   //apenas modulos
   imports: [
     BrowserModule,
-    PhotosModule
+    PhotosModule,
+    AppRoutingModule //importando o arquivo que define as rotas da aplicacao
   ],
   providers: [],
   bootstrap: [AppComponent]
