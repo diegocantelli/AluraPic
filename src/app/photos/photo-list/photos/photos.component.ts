@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Photo } from '../../photo/photo';
 
 @Component({
@@ -6,15 +6,20 @@ import { Photo } from '../../photo/photo';
   templateUrl: './photos.component.html',
   styleUrls: ['./photos.component.css']
 })
-export class PhotosComponent implements OnInit {
+export class PhotosComponent implements OnInit, OnChanges {
 
   @Input() photos: Photo[] = [];
   rows: any[] = [];
 
   constructor() { }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if(changes['photos']){ //caso haja alteracao nos valores do input, a propriedade changes ira conter o nome da propriedade que sofreu alteracao
+      this.rows = this.groupColumns(this.photos);
+    }
+  }
+
   ngOnInit(): void {
-    this.rows = this.groupColumns(this.photos);
   }
 
   groupColumns(photos: Photo[]){
