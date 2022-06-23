@@ -11,6 +11,7 @@ import { PhotoService } from '../photo/photo.service';
 export class PhotoListComponent implements OnInit{
 
   photos: Photo[] = [];
+  filter: any  = '';
 
   constructor(
     private photoService: PhotoService,
