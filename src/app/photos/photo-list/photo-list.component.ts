@@ -13,18 +13,11 @@ export class PhotoListComponent implements OnInit{
   photos: Photo[] = [];
   filter: any  = '';
 
-  constructor(
-    private photoService: PhotoService,
-    private activatedRoute: ActivatedRoute
-    ){}
+  constructor(private activatedRoute: ActivatedRoute){}
 
   //Ocorre apos a instanciacao da classe e de receber as inboud properties
   ngOnInit(): void{
-
-    const userName = this.activatedRoute.snapshot.params['userName'];
-    console.log(userName);
-    this.photoService.listFromUser(userName)
-      .subscribe(photos => this.photos = photos);
+    this.photos = this.activatedRoute.snapshot.data['photos'];
   }
 
 }
