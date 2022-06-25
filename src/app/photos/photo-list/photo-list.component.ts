@@ -37,6 +37,7 @@ export class PhotoListComponent implements OnInit, OnDestroy{
       .listFromUserPaginated(this.userName, ++this.currentPage)
       .subscribe(photos => {
         //é necessario atribuir uma nova instancia a photos para que o mecanismo de deteccao do angular saiba que essa propriedade mudou
+        //e assim o template possa ser renderizado com os novos valores
         this.photos = this.photos.concat(photos);
         if(!photos.length) this.hasMore = false
       })
