@@ -30,6 +30,7 @@ export class PhotoListComponent implements OnInit{
     this.photoService
       .listFromUserPaginated(this.userName, ++this.currentPage)
       .subscribe(photos => {
+        this.filter = '';
         //é necessario atribuir uma nova instancia a photos para que o mecanismo de deteccao do angular saiba que essa propriedade mudou
         //e assim o template possa ser renderizado com os novos valores
         this.photos = this.photos.concat(photos);

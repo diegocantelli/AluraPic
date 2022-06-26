@@ -1,4 +1,7 @@
- <ap-search></ap-search>
+ <ap-search
+  (onTyping)="filter = $event">
+
+ </ap-search>
 {{ filter }}
 <ap-photos [photos]="photos | filterByDescription: filter"></ap-photos>
 
