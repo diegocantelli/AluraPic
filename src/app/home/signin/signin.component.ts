@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth.service';
@@ -9,6 +9,9 @@ import { AuthService } from 'src/app/core/auth.service';
 export class SignInComponent implements OnInit{
 
   loginForm!: FormGroup;
+
+  // @ViewChild('userNameInput') -> irá guardar uma referencia para o elemento do dom com este identificador
+  @ViewChild('inputUserName') inputUserName!: ElementRef<HTMLInputElement>;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,7 +36,10 @@ export class SignInComponent implements OnInit{
           console.log('Autenticado');
           this.router.navigate(['user', userName]);
         },
-        error: (error) => this.loginForm.reset()
+        error: (error) => {
+          this.loginForm.reset();
+          this.inputUserName.nativeElement.focus();
+        }
       }
     );
   }
