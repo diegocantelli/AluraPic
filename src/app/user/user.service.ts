@@ -11,7 +11,7 @@ export class UserService {
 
   // BehaviorSubject -> emite um valor ate que alguem se inscreve e consuma o valor
   // o valor consumido sera o ultimo valor emitido pelo behavioSubject
-  private userSubject = new BehaviorSubject<User>({} as User);
+  private userSubject = new BehaviorSubject<User | null>(null);
 
   constructor(private tokenService: TokenService) {
     this.tokenService.hasToken() &&
