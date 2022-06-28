@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import jwt_decode from "jwt-decode";
 
 import { TokenService } from '../core/token/token.service';
 import { User } from './user';
+import { Validators } from '@angular/forms';
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
-  private userSubject = new Subject<User>();
+  // BehaviorSubject -> emite um valor ate que alguem se inscreve e consuma o valor
+  // o valor consumido sera o ultimo valor emitido pelo behavioSubject
+  private userSubject = new BehaviorSubject<User>({} as User);
 
   constructor(private tokenService: TokenService) {
     this.tokenService.hasToken() &&
