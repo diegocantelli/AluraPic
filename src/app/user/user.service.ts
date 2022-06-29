@@ -12,6 +12,7 @@ export class UserService {
   // BehaviorSubject -> emite um valor ate que alguem se inscreve e consuma o valor
   // o valor consumido sera o ultimo valor emitido pelo behavioSubject
   private userSubject = new BehaviorSubject<User | null>(null);
+  private userName!: string;
 
   constructor(private tokenService: TokenService) {
     this.tokenService.hasToken() &&
@@ -34,11 +35,20 @@ export class UserService {
     this.userSubject.next(null);
   }
 
+  isLogged(){
+    return this.tokenService.hasToken();
+  }
+
+  getUserName(){
+    return this.userName;
+  }
+
   private decodeAndNotify(){
     const token = this.tokenService.getToken();
 
     if(token){
       const user = jwt_decode(token) as User
+      this.userName = user.name;
       this.userSubject.next(user); //emite para quem estiver inscrito na observable os dados do usuario logados
     }
   }
