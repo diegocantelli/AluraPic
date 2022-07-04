@@ -43,6 +43,10 @@
             *ngIf="signupForm.get('userName')?.errors?.['maxlength']"
             text="Maximum length is 30!">
         </ap-vmessage>
+        <ap-vmessage
+            *ngIf="signupForm.get('userName')?.errors?.['lowerCase']"
+            text="Deve ser lowercase">
+        </ap-vmessage>
     </div>
 
     <div class="form-group">
