@@ -5,7 +5,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
 import { CoreModule } from './core/core.module';
 import { ErrorsModule } from './errors/errors.module';
-import { HomeModule } from './home/home.module';
 import { PhotosModule } from './photos/photos.module';
 
 @NgModule({
@@ -20,7 +19,6 @@ import { PhotosModule } from './photos/photos.module';
     PhotosModule,
     AppRoutingModule, //importando o arquivo que define as rotas da aplicacao
     ErrorsModule,
-    HomeModule,
     CoreModule
   ],
   providers: [],
