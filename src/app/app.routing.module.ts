@@ -40,6 +40,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
+
+  //useHash: true -> adiciona o hash na url da aplicacao
+  // imports: [ RouterModule.forRoot(routes, { useHash: true}) ],
   exports: [ RouterModule ] //necessario exportar este modulo para podermos usar o router-outlet
 })
 export class AppRoutingModule { }
