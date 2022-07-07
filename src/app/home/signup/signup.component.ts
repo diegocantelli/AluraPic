@@ -7,7 +7,8 @@ import { SignUpService } from './signup.service';
 import { UserNotTakenValidatorService } from './user-not-taken-validator.service';
 
 @Component({
-    templateUrl: './signup.component.html'
+    templateUrl: './signup.component.html',
+    providers: [ UserNotTakenValidatorService ] //este servico deixa de ser 'root'e passa ter seu escopo valido apenas dentro deste componente
 })
 export class SignUpComponent implements OnInit {
 
