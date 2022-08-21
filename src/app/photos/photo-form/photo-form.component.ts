@@ -12,6 +12,7 @@ export class PhotoFormComponent implements OnInit {
 
   photoForm!: FormGroup;
   file!: File | null;
+  preview!: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -44,7 +45,14 @@ export class PhotoFormComponent implements OnInit {
     const inputFile = (event.target as HTMLInputElement)
     if(!inputFile.files) return;
 
-    this.file = inputFile?.files[0]
+    this.file = inputFile?.files[0];
+
+    const reader = new FileReader();
+
+    //este callback será chamado após o método readAsDataURL finalizar a conversao do arquivo para base64
+    //precisa ser chamado antes de readAsDataURL para o método ter uma referência do que deve ser feito após o término de sua execução
+    reader.onload = (event: any) => this.preview = event.target.result;
+    reader.readAsDataURL(this.file);
   }
 
 }
