@@ -7,6 +7,7 @@ import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { PhotoListResolver } from './photos/photo-list/photo-list.resolver';
 import { AuthGuard } from './core/guards/auth.guard';
 import { RequiresAuthenticationGuard } from './core/guards/requires.authentication.guard';
+import { PhotoDetailsComponent } from './photos/photo-details/photo-details.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,10 @@ const routes: Routes = [
       path: 'p/add',
       component: PhotoFormComponent,
       canActivate: [ RequiresAuthenticationGuard ]
+    },
+    {
+      path: 'p/:photoId',
+      component: PhotoDetailsComponent
     },
     { path: '**', component: NotFoundComponent }, //caso o usuario digite uma rota invalida sera carregado o componente de NotFoundComponent
 ];
