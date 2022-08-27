@@ -1,19 +1,12 @@
-import { Directive, ElementRef, OnInit } from "@angular/core";
-import { PlatformDetectorService } from "src/app/core/platform/platform-detector.service";
+import { CommonModule } from "@angular/common";
+import { NgModule } from "@angular/core";
+import { ImmediateClickDirective } from "./immediate-click.directive";
 
-@Directive({
-  selector: '[immediateClick]'
+@NgModule({
+  declarations: [ImmediateClickDirective], //Os compoenentes, diretivas e etc que este modulo importa
+  exports: [ImmediateClickDirective],
+  imports: [CommonModule]
 })
+export class ImmediateClickModule{
 
-export class ImmediateClickDirective implements OnInit {
-
-  constructor(
-    private element: ElementRef<any>,
-    private platformDetector: PlatformDetectorService
-  ){}
-
-  ngOnInit(): void {
-    this.platformDetector.isPlatformBrowser() &&
-      this.element.nativeElement.click();
-  }
 }
