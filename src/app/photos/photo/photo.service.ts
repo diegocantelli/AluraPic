@@ -29,4 +29,8 @@ export class PhotoService {
     formData.append('imageFile', file);
     return this.http.post('http://localhost:3000' + '/photos/upload', formData);
   }
+
+  findById(id: string){
+    return this.http.get<Photo>('http://localhost:3000' + '/photos/' + id)
+  }
 }
