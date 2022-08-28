@@ -31,11 +31,11 @@ export class PhotoService {
     return this.http.post('http://localhost:3000' + '/photos/upload', formData);
   }
 
-  findById(id: string){
+  findById(id: number){
     return this.http.get<Photo>('http://localhost:3000' + '/photos/' + id)
   }
 
   getComments(photoId: number) {
-    return this.http.get<PhotoComment[]>('http://localhost:3000' + '/photos/' + photoId + 'comments');
+    return this.http.get<PhotoComment[]>('http://localhost:3000' + '/photos/' + photoId + '/comments');
   }
 }
