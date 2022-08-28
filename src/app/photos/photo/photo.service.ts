@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Photo } from "./photo";
+import { PhotoComment } from "./photo-comment";
 
 @Injectable({ //indica que esse servico pode ser injetado em outras classes e tambem pode receber injecao de dependencia
   providedIn: 'root' //todos os componentes que fizerem uso desse serviço irão usar a mesma instância
@@ -32,5 +33,9 @@ export class PhotoService {
 
   findById(id: string){
     return this.http.get<Photo>('http://localhost:3000' + '/photos/' + id)
+  }
+
+  getComments(photoId: number) {
+    return this.http.get<PhotoComment[]>('http://localhost:3000' + '/photos/' + photoId + 'comments');
   }
 }
