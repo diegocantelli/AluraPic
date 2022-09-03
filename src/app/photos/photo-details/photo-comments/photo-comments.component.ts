@@ -28,6 +28,10 @@ export class PhotoCommentsComponent implements OnInit {
     })
   }
 
+  save(){
+    console.log('chamei');
+  }
+
   checkFormFieldErrosValidation(errorsArray: ValidationErrors | null | undefined, error: string): boolean{
     if(!errorsArray) return false;
 

@@ -38,4 +38,11 @@ export class PhotoService {
   getComments(photoId: number) {
     return this.http.get<PhotoComment[]>('http://localhost:3000' + '/photos/' + photoId + '/comments');
   }
+
+  addComment(photoId: number, commentText: string) {
+    return this.http.post(
+      'http://localhost:3000' + '/photos/' + photoId + '/comments',
+      { commentText }
+    );
+  }
 }
