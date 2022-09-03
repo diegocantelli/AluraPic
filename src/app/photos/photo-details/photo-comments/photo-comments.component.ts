@@ -29,7 +29,13 @@ export class PhotoCommentsComponent implements OnInit {
   }
 
   save(){
-    console.log('chamei');
+    const comment = this.commentForm.get('comment')?.value as string;
+    this.photoService
+      .addComment(this.photoId, comment)
+      .subscribe(() => {
+        console.log('Comentário adicionado com sucesso!');
+        this.commentForm.reset();
+      });
   }
 
   checkFormFieldErrosValidation(errorsArray: ValidationErrors | null | undefined, error: string): boolean{
