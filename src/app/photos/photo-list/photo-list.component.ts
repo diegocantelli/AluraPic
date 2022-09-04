@@ -22,8 +22,12 @@ export class PhotoListComponent implements OnInit{
 
   //Ocorre apos a instanciacao da classe e de receber as inboud properties
   ngOnInit(): void{
-    this.userName = this.activatedRoute.snapshot.params['userName'];
-    this.photos = this.activatedRoute.snapshot.data['photos'];
+
+    // escutando alterações na rota para que os dados sejam atualizados conforme os parâmetros mudarem na rota
+    this.activatedRoute.params.subscribe(params => {
+      this.userName = params['userName'];
+      this.photos = this.activatedRoute.snapshot.data['photos'];
+    });
    }
 
   load(){

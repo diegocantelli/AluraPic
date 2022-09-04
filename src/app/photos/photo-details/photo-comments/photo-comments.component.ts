@@ -32,7 +32,7 @@ export class PhotoCommentsComponent implements OnInit {
     const comment = this.commentForm.get('comment')?.value as string;
     this.comments$ = this.photoService
       .addComment(this.photoId, comment)
-      .pipe(switchMap(() => this.photoService.getComments(this.photoId)))
+      .pipe(switchMap(() => this.photoService.getComments(this.photoId))) //apos adicionar o comentario, irá trocar para o observable getComments
       .pipe(tap(() => {
         this.commentForm.reset();
         alert('Comentário adicionado com sucesso!');
