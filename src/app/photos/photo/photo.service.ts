@@ -45,4 +45,8 @@ export class PhotoService {
       { commentText }
     );
   }
+
+  removePhoto(photoId: number){
+    return this.http.delete('http://localhost:3000' + '/photos/' + photoId);
+  }
 }
