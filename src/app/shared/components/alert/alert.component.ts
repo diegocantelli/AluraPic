@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { Alert } from "./alert";
+import { Alert, AlertType } from "./alert";
 import { AlertService } from "./alert.service";
 
 @Component({
@@ -25,5 +25,27 @@ export class AlertComponent{
 
   removeAlert(alertToRemove: Alert){
     this.alerts = this.alerts.filter(alert => alertToRemove != alert);
+  }
+
+  getAlertClass(alert: Alert){
+    if(!alert) return '';
+
+    switch (alert.alertType) {
+      case AlertType.SUCCESS:
+        return 'alert alert-success';
+        break;
+      case AlertType.INFO:
+        return 'alert alert-info';
+        break;
+      case AlertType.WARNING:
+        return 'alert alert-warning';
+      break;
+      case AlertType.DANGER:
+        return 'alert alert-danger';
+      break;
+      default:
+        return '';
+      break;
+    }
   }
 }
