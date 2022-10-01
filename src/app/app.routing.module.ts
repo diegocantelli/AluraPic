@@ -36,7 +36,11 @@ const routes: Routes = [
       path: 'p/:photoId',
       component: PhotoDetailsComponent
     },
-    { path: '**', component: NotFoundComponent }, //caso o usuario digite uma rota invalida sera carregado o componente de NotFoundComponent
+    {
+      path: 'not-found',
+      component: NotFoundComponent
+    },
+    { path: '**', redirectTo: 'not-found' }, //caso o usuario digite uma rota invalida sera carregado o componente de NotFoundComponent
 ];
 
 @NgModule({
