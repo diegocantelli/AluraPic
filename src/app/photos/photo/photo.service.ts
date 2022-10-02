@@ -52,7 +52,7 @@ export class PhotoService {
 
   like(photoId: number){
     //{observe: 'response'}: serve para podermos observar o cabecalho da resposta da requisição
-    this.http.post('http://localhost:3000' + '/photos/' + photoId + 'like', {}, {observe: 'response'})
+    return this.http.post('http://localhost:3000' + '/photos/' + photoId + '/like', {}, {observe: 'response'})
       .pipe(map(res => true))
       .pipe(catchError(err => {
         return err.status == '304' ? of(false) : throwError(() => err)

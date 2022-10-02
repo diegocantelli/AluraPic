@@ -46,4 +46,15 @@ export class PhotoDetailsComponent implements OnInit{
         this.router.navigate(['/user', this.userService.getUserName()])
       });
   }
+
+  like(photo: Photo){
+    this.photoService
+      .like(photo.id)
+      .subscribe(liked => {
+        if(liked){
+          //busca os dados da foto atualizados com o número de likes
+          this.photo$ = this.photoService.findById(photo.id);
+        }
+      })
+  }
 }
