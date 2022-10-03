@@ -5,11 +5,13 @@ import { catchError, map, Observable, of, throwError } from "rxjs";
 import { Photo } from "./photo";
 import { PhotoComment } from "./photo-comment";
 
+//para usar os valores do arquivo de environment de prod é necessário buildar o projeto da seguinte forma
+// ng build --prod
+const apiUrlProd = environment.ApiUrl;
+
 @Injectable({ //indica que esse servico pode ser injetado em outras classes e tambem pode receber injecao de dependencia
   providedIn: 'root' //todos os componentes que fizerem uso desse serviço irão usar a mesma instância
 })
-
-const apiUrlProd = environment.ApiUrl;
 export class PhotoService {
 
   constructor(private http: HttpClient) {}

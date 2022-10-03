@@ -25,20 +25,32 @@ const routes: Routes = [
       component: PhotoListComponent,
       resolve: {
         photos: PhotoListResolver
+      },
+      data: {
+        title: 'Timeline'
       }
     },
     {
       path: 'p/add',
       component: PhotoFormComponent,
-      canActivate: [ RequiresAuthenticationGuard ]
+      canActivate: [ RequiresAuthenticationGuard ],
+      data: {
+        title: 'Photo upload'
+      }
     },
     {
       path: 'p/:photoId',
-      component: PhotoDetailsComponent
+      component: PhotoDetailsComponent,
+      data: {
+        title: 'Photo Detail'
+      }
     },
     {
       path: 'not-found',
-      component: NotFoundComponent
+      component: NotFoundComponent,
+      data: {
+        title: 'Not found'
+      }
     },
     { path: '**', redirectTo: 'not-found' }, //caso o usuario digite uma rota invalida sera carregado o componente de NotFoundComponent
 ];
