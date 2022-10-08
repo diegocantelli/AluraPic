@@ -1,6 +1,23 @@
 import { Injectable } from "@angular/core";
+import { startWith, Subject } from "rxjs";
+import { LoadingType } from "./loading-type";
 
 @Injectable({ providedIn: 'root' })
 export class LoadingService {
+
+  loadingSubject = new Subject<LoadingType>();
+
+  getLoading(){
+    return this.loadingSubject.asObservable()
+      .pipe(startWith(LoadingType.STOPPED)); //inicia a observable com o valor padrao stopped
+  }
+
+  start(){
+    this.loadingSubject.next(LoadingType.LOADING);
+  }
+
+  stop(){
+    this.loadingSubject.next(LoadingType.STOPPED);
+  }
 
 }
