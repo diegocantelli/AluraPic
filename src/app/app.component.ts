@@ -29,7 +29,7 @@ export class AppComponent implements OnInit{
         // 1 iteracao: http://localhost:4200 -> neste exemplo terá a url de rota definida como ""
         //             e irá possuir o firstChild como user/flavio, que na vdd e a representacao da rota definida como user/:user
         // 2 iteracao: irá ter como valores nos segmentos de rota os valores user e flavio
-        //             e nao irá possuir valor null na propriedade firstChild. Nesta rota que terá o valor passado na propriedade data
+        //             e irá possuir valor null na propriedade firstChild. Nesta rota que terá o valor passado na propriedade data
         while(route.firstChild) route = route.firstChild;
         return route;
       }))

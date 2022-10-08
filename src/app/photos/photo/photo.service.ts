@@ -33,7 +33,13 @@ export class PhotoService {
     formData.append('description', description);
     formData.append('allowComments', allowComments ? 'true' : 'false');
     formData.append('imageFile', file);
-    return this.http.post('http://localhost:3000' + '/photos/upload', formData);
+    return this.http.post('http://localhost:3000' + '/photos/upload',
+      formData,
+      //objeto com configuracoes necessárias nos casos onde deseja-se obter informacoes sobre os eventos do http e o progresso de uma requisicao
+      {
+        observe: 'events',
+        reportProgress: true
+      })
   }
 
   findById(id: number){
