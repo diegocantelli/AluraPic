@@ -10,25 +10,14 @@ import { LoadingService } from "./loading.service";
 })
 export class LoadingComponent implements OnInit{
 
-  loading$: Observable<string>;
+  loading$!: Observable<string>;
 
-  constructor(private loadingService: LoadingService){
-    this.loading$ = new Observable<string>();
-  }
+  constructor(private loadingService: LoadingService){}
 
   ngOnInit(): void {
+
+    //conforme o valor que for passado pelo interceptor será retornada uma classe css
     this.loading$ = this.loadingService.getLoading()
     .pipe(map(loadingType => loadingType.valueOf()));
   }
-
-  getLoadingClass() : string {
-    let classe = '';
-
-    this.loadingService.getLoading()
-      .pipe(map(loadingType => loadingType.valueOf()))
-      .subscribe(value => classe = value);
-
-    return classe ?? 'stopped';
-  }
-
 }

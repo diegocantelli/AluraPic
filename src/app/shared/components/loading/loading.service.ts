@@ -12,10 +12,12 @@ export class LoadingService {
       .pipe(startWith(LoadingType.STOPPED)); //inicia a observable com o valor padrao stopped
   }
 
+  //Este método será chamado pelo loading.interceptor
   start(){
     this.loadingSubject.next(LoadingType.LOADING);
   }
 
+  //Este método será chamado pelo loading.interceptor
   stop(){
     this.loadingSubject.next(LoadingType.STOPPED);
   }
