@@ -4,6 +4,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { AlertModule } from "../shared/components/alert/alert.module";
 import { LoadingModule } from "../shared/components/loading/loading.module";
+import { MenuModule } from "../shared/components/menu/menu.module";
 import { FooterComponent } from "./footer/footer.component";
 import { HeaderComponent } from "./header/header.component";
 import { RequestInterceptor } from "./request.interceptor";
@@ -17,7 +18,8 @@ import { RequestInterceptor } from "./request.interceptor";
     CommonModule,
     AlertModule,
     RouterModule, //permite usar a diretiva routerLink dentre outras
-    LoadingModule
+    LoadingModule,
+    MenuModule
   ],
   exports: [
     HeaderComponent,

@@ -5,6 +5,8 @@ import { LoadingType } from "./loading-type";
 @Injectable({ providedIn: 'root' })
 export class LoadingService {
 
+  // Subject: Emite o valor para o primeiro que se inscreveu, os demais nao receberão o valor que já foi emitido e lido pelo primeiro
+  // BehaviorSubject: Emite o valor para todos os que estao inscritos
   loadingSubject = new Subject<LoadingType>();
 
   getLoading(){
