@@ -1,0 +1,10 @@
+<!-- aplica a classe active-menu somente se a pripriedade isShown for true -->
+<div [ngClass]="{ 'active-menu': isShown }">
+  <div class="menu-bar">
+      <i class="fa fa-window-close" (click)="toggle()"></i>
+
+      <!-- ng-content significa que no lugar onde <ap-menu> for utilizado, podera ser passado entre as tags algum template, -->
+      <ng-content></ng-content>
+  </div>
+  <div class="overlay" (click)="toggle()"></div>
+</div>
