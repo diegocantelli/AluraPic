@@ -1,6 +1,8 @@
 import { LocationStrategy, PathLocationStrategy } from "@angular/common";
 import { ErrorHandler, Injectable, Injector } from "@angular/core";
+import { Router } from "@angular/router";
 import { UserService } from "src/app/user/user.service";
+import { environment } from "src/environments/environment.prod";
 import * as StackTrace from "stacktrace-js";
 
 // Permite que esta classe receba injeção de dependeencia
@@ -22,6 +24,8 @@ export class GlobalErrorHandler implements ErrorHandler {
 
     const userService = this.injector.get(UserService);
 
+    const router = this.injector.get(Router);
+
     // só nos interessa a instancia de PathLocatinStrategy
     const url = location instanceof PathLocationStrategy
       ? location.path
@@ -30,6 +34,10 @@ export class GlobalErrorHandler implements ErrorHandler {
 
 
     const message = error.message ? error.message : error.toString();
+
+    // if(environment.production){
+    //   router.navigate(['/error']);
+    // }
 
     StackTrace.fromError(error)
       .then(stackFrames => {
