@@ -58,14 +58,17 @@ export class SignUpComponent implements OnInit {
   }
 
   signup(){
-    // getRawValue: retorna os dados do formulario, preenchidos ou nao
-    const newUser = this.signupForm.getRawValue() as NewUser;
-    this.signupService
-      .signup(newUser)
-      .subscribe(
-        {
-          complete: () => this.router.navigate(['']),
-          error: (err) => console.log(err)
-        });
+
+    if(this.signupForm.valid && !this.signupForm.pending){
+      // getRawValue: retorna os dados do formulario, preenchidos ou nao
+      const newUser = this.signupForm.getRawValue() as NewUser;
+      this.signupService
+        .signup(newUser)
+        .subscribe(
+          {
+            complete: () => this.router.navigate(['']),
+            error: (err) => console.log(err)
+          });
+    }
   }
 }
