@@ -4,7 +4,7 @@
     <div class="form-group">
         <input  formControlName="email" placeholder="email" class="form-control" autofocus >
         <ap-vmessage
-            *ngIf="signupForm.get('email')?.errors?.['required'] && form.submitted"
+            *ngIf="signupForm.get('email')?.errors?.['required'] && (form.submitted || signupForm.get('email')?.touched)"
             text="Email is required!">
         </ap-vmessage>
         <ap-vmessage
