@@ -43,7 +43,11 @@ export class PhotoDetailsComponent implements OnInit{
       .removePhoto(this.photoId)
       .subscribe(() => {
         this.alertService.success('Foto removida com sucesso!', true);
-        this.router.navigate(['/user', this.userService.getUserName()])
+
+        // Ao remover uma foto, a url da foto excluída fica salva no histórico de urls do navegador
+        // e ao clicar no botao de navegar de volta, acaba exibindo a rota da foto ja excluída
+        // Ao utilizar o replaceUrl, o angular exclui a rota da foto que foi excluída
+        this.router.navigate(['/user', this.userService.getUserName()], { replaceUrl: true})
       });
   }
 
