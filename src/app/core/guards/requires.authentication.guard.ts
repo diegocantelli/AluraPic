@@ -14,7 +14,12 @@ export class RequiresAuthenticationGuard implements CanActivate{
     //true: acesso à rota
 
     if(!this.userService.isLogged()){
-      this.router.navigate(['']);
+      this.router.navigate([''],
+      {
+        queryParams: {
+          formUrl: state.url
+        }
+      });
       return false;
     }
     // this.router.navigate(['']);
