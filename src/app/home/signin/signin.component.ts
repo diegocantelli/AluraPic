@@ -24,6 +24,7 @@ export class SignInComponent implements OnInit{
 
   ngOnInit(): void {
 
+    //Obtendo o valor da queryString atraves do activatedRoute.queryParamMap
     this.activatedRoute.queryParamMap.subscribe(params => this.fromUrl = params.get('fromUrl') ?? '')
 
     this.loginForm = this.formBuilder.group({
