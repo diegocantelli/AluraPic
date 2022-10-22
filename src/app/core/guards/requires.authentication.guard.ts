@@ -17,7 +17,7 @@ export class RequiresAuthenticationGuard implements CanActivate{
       this.router.navigate([''],
       {
         queryParams: {
-          formUrl: state.url
+          fromUrl: state.url
         }
       });
       return false;

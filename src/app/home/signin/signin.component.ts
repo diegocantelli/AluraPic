@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/core/auth.service';
 import { PlatformDetectorService } from 'src/app/core/platform/platform-detector.service';
 
@@ -10,6 +10,7 @@ import { PlatformDetectorService } from 'src/app/core/platform/platform-detector
 export class SignInComponent implements OnInit{
 
   loginForm!: FormGroup;
+  fromUrl: string = '';
 
   // @ViewChild('userNameInput') -> irá guardar uma referencia para o elemento do dom com este identificador
   @ViewChild('inputUserName') inputUserName!: ElementRef<HTMLInputElement>;
@@ -18,9 +19,13 @@ export class SignInComponent implements OnInit{
     private formBuilder: FormBuilder,
     private authservice: AuthService,
     private router: Router,
-    private platformDetectionService: PlatformDetectorService){}
+    private platformDetectionService: PlatformDetectorService,
+    private activatedRoute: ActivatedRoute){}
 
   ngOnInit(): void {
+
+    this.activatedRoute.queryParamMap.subscribe(params => this.fromUrl = params.get('fromUrl') ?? '')
+
     this.loginForm = this.formBuilder.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]
@@ -37,8 +42,12 @@ export class SignInComponent implements OnInit{
     this.authservice.authenticate(userName, password)
       .subscribe({
         complete: () => {
-          console.log('Autenticado');
-          this.router.navigate(['user', userName]);
+
+          if(this.fromUrl){
+            this.router.navigateByUrl(this.fromUrl);
+          } else {
+            this.router.navigate(['user', userName]);
+          }
         },
         error: (error) => {
           this.loginForm.reset();
